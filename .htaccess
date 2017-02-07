@@ -1,0 +1,9 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^www.priseEnMain.com$ [NC,OR]
+
+RewriteCond %{HTTP_HOST} ^www.priseEnMain.com$
+
+RewriteCond %{REQUEST_URI} !web/
+
+RewriteRule (.*) /web/$1 [L]
