@@ -7,16 +7,53 @@ and open the template in the editor.
     Created on : 7 févr. 2017, 12:20:51
     Author     : sebastien-javary
 */
+body, nav, ul, li, a{
+    padding: 0;
+    margin: 0;
+}
+
+
+nav{
+    background-color: cyan;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: crimson;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: lawngreen;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: magenta;
+}
 
 .red{
     background-color: red;
 }
+
 .blue{
     background-color: blue;
 }
+
 .yellow{
     background-color: yellow;
 }
+
 .green{
     background-color: green;
 }
