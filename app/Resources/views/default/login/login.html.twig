@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <body class="purple">
+        <form method="POST" action="{{path('logincheck')}}">
+            <input type="text" id="username" name="_username"/>
+            <input type="password" id="password" name="_password"/>
+            <input type="submit" value="login"/>
+        </form>
+    </body>
+{% endblock %}

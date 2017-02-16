@@ -8,19 +8,31 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 {% block body %}
-    <body class=""> 
+    <body class="purple"> 
         {#    on creer un block nav qui est rappelé dans nos autres pages   #}
         {% block nav %}
             <nav>
                 <ul>
                     {# on link grace au path (name) la route #}
-                    <li><a href="{{path('b')}}">Blue</a></li>
-                    <li><a href="{{path('y')}}">Yellow</a></li>
-                    <li><a href="{{path('r')}}">Red</a></li>
-                    <li><a href="{{path('g')}}">Green</a></li>
+                    {% if is_granted('ROLE_USER') %}
+
+                        <li><a href="{{path('b')}}">Blue</a></li>
+                        <li><a href="{{path('y')}}">Yellow</a></li>
+                        <li><a href="{{path('r')}}">Red</a></li>
+                        <li><a href="{{path('g')}}">Green</a></li>
+
+                        <p>Bonjour : <a class="user" href="{{path('logout')}}">{{app.user}}</a> </p>                        
+                    {% else %}
+                        <form method="POST" action="{{path('logincheck')}}">
+                            <input type="text" id="username" name="_username" placeholder="Username"/>
+                            <input type="password" id="password" name="_password" placeholder="Password"/>
+                            <input type="submit" value="login"/>
+                        </form>
+                    {% endif %}
                 </ul>
             </nav>
         {% endblock %}
+        <p>one million</p>
     </body>
 {% endblock %}
 {% block javascripts %}{% endblock %}

@@ -57,3 +57,9 @@ li a:hover {
 .green{
     background-color: green;
 }
+.purple{
+    background-color: purple;
+}
+form{
+    margin: 14px 0;
+}

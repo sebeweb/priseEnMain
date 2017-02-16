@@ -1,11 +1,38 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
-
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER, ROLE_GREEN, ROLE_BLUE, ROLE_YELLOW, ROLE_RED
+        ROLE_GREEN: ROLE_USER
+        ROLE_BLUE: ROLE_USER
+        ROLE_YELLOW: ROLE_USER
+        ROLE_RED: ROLE_USER
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    camel:
+                        password: quais
+                        roles: 'ROLE_USER'
+                    mrgreen:
+                        password: green
+                        roles: 'ROLE_GREEN'
+                    mrblue:
+                        password: blue
+                        roles: 'ROLE_BLUE'
+                    mryellow:
+                        password: yellow
+                        roles: 'ROLE_YELLOW'
+                    mrred:
+                        password: red
+                        roles: 'ROLE_RED'
+                    admin:
+                        password: kit
+                        roles: 'ROLE_ADMIN'
+                        
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -17,8 +44,22 @@ security:
             anonymous: ~
             # activate different ways to authenticate
 
-            # http_basic: ~
+#            http_basic: ~
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: ~
+            form_login: 
+                check_path: /login_check
+                login_path: /login
+                
+            logout:
+                path: /logout
+                target: /
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/green, roles: ROLE_GREEN }
+        - { path: ^/blue, roles: ROLE_BLUE }
+        - { path: ^/yellow, roles: ROLE_YELLOW }
+        - { path: ^/red, roles: ROLE_RED }
+        
+    access_denied_url: /
